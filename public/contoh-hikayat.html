@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hikayat Hang Tuah</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Cinzel for Royal Headings, Lora for Classic Body Text -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        royal: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        maroon: {
+                            800: '#580f1c',
+                            900: '#3b0a13',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#aa8c2c',
+                            600: '#806921',
+                        },
+                        parchment: '#fdfbf7',
+                        ink: '#2d3748',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #f4eee0; 
+            color: #2d3748;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d0c8b6' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Drop Cap for the first letter of the story */
+        .drop-cap::first-letter {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            float: left;
+            line-height: 1;
+            padding-right: 0.15em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Manuscript Paper Effect */
+        .manuscript {
+            background-color: #fdfbf7;
+            box-shadow: 
+                0 4px 6px rgba(0,0,0,0.05),
+                0 10px 15px rgba(0,0,0,0.02),
+                inset 0 0 40px rgba(212, 175, 55, 0.05);
+            border: 1px solid #e2d8c3;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f4eee0; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #aa8c2c; }
+
+        .ornament-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .ornament-line::before, .ornament-line::after {
+            content: '';
+            height: 1px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            flex-grow: 1;
+            max-width: 150px;
+        }
+        .ornament-icon {
+            color: #d4af37;
+            margin: 0 1rem;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="antialiased font-serif selection:bg-gold-400 selection:text-white">
+
+    <!-- Header / Cover Section -->
+    <header class="relative bg-maroon-900 text-white overflow-hidden border-b-8 border-gold-500 shadow-2xl">
+        <!-- Abstract traditional pattern overlay -->
+        <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23d4af37\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 py-24 text-center relative z-10">
+            <div class="mb-6 animate-pulse">
+                <i class="fas fa-crown text-5xl text-gold-400"></i>
+            </div>
+            <p class="font-royal text-gold-400 tracking-[0.4em] uppercase text-sm md:text-base mb-4 font-bold">Karya Sastra Epik Melayu</p>
+            <h1 class="text-5xl md:text-7xl font-royal font-bold text-white mb-6 drop-shadow-lg">
+                Hikayat <br>Hang Tuah
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto italic">
+                Kisah kepahlawanan, kesetiaan, dan fitnah di tanah Bintan.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content (The Story Scroll) -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-10 relative z-20">
+        
+        <!-- Naskah Container -->
+        <div class="manuscript rounded-xl p-8 md:p-16 relative">
+            
+            <!-- Corner Ornaments -->
+            <div class="absolute top-4 left-4 text-gold-400/40 text-2xl"><i class="fas fa-chess-rook"></i></div>
+            <div class="absolute top-4 right-4 text-gold-400/40 text-2xl"><i class="fas fa-chess-rook"></i></div>
+            <div class="absolute bottom-4 left-4 text-gold-400/40 text-2xl"><i class="fas fa-chess-rook"></i></div>
+            <div class="absolute bottom-4 right-4 text-gold-400/40 text-2xl"><i class="fas fa-chess-rook"></i></div>
+
+            <!-- BAGIAN 1: Masa Kecil & Mimpi Emas -->
+            <section class="mb-16 reveal">
+                <div class="text-center mb-8">
+                    <span class="font-royal text-maroon-800 font-bold tracking-widest text-sm uppercase">Bagian Pertama</span>
+                    <h2 class="text-3xl font-royal text-gold-600 mt-2">Mimpi Sang Ayah</h2>
+                    <div class="ornament-line"><i class="fas fa-moon ornament-icon"></i></div>
+                </div>
+                
+                <div class="space-y-6 text-lg leading-relaxed text-ink text-justify">
+                    <p class="drop-cap">
+                        Suatu hari, terdapat pasangan yang bernama Hang Mahmud dan Dang Merdu yang dikaruniai seorang anak laki-laki yang bernama Hang Tuah. Keluarga itu tinggal pada suatu desa yang disebut dengan Sungai Duyung. Di daerah tersebut, seluruh warga mengetahui bahwasanya Raja Bintan yang merupakan pemimpin wilayah itu dikenal baik dan juga disegani oleh segenap rakyatnya.
+                    </p>
+                    <p>
+                        Mahmud akhirnya berkeluh kesah di depan istrinya tersebut untuk dapat diizinkan mengadu nasibnya di Bintan, pikirnya siapa tahu apabila ia disana nasibnya akan baik. Dan setelah ia berdiskusi dengan sang istri, ia pun memantapkan niatnya.
+                    </p>
+                    <p>
+                        Tiba malamnya Mahmud bermimpi terdapat bulan yang turun dari langit dan kemudian bersinar di atas kepala anaknya, yakni Hang Tuah. Mahmud pun terbangun dari tidurnya dan kemudian menemui anaknya dan melihat anaknya memancarkan bau yang sangat wangi. Dan pada pagi hari, keluarga itu akan mengadakan acara syukuran.
+                    </p>
+                </div>
+            </section>
+
+            <!-- BAGIAN 2: Keberanian Melawan Pemberontak -->
+            <section class="mb-16 reveal">
+                <div class="text-center mb-8">
+                    <span class="font-royal text-maroon-800 font-bold tracking-widest text-sm uppercase">Bagian Kedua</span>
+                    <h2 class="text-3xl font-royal text-gold-600 mt-2">Keberanian di Ujung Kapak</h2>
+                    <div class="ornament-line"><i class="fas fa-gavel ornament-icon"></i></div>
+                </div>
+                
+                <div class="space-y-6 text-lg leading-relaxed text-ink text-justify">
+                    <p>
+                        Beberapa hari kemudian, Hang Tuah ikut membantu ayahnya untuk membelah sejumlah kayu yang akan dijadikan persediaan. Dan tepat pada saat itu, datanglah sejumlah pemberontak yang berniat untuk membunuh orang yang ada di desa tersebut.
+                    </p>
+                    <p>
+                        Warga desa pun berlarian dengan panik untuk menyelamatkan dirinya, akan tetapi Hang Tuah masih saja tetap sibuk untuk membelah kayu. Dari kejauhan, ibu dari Hang Tuah berteriak dengan panik dan menyuruhnya untuk pergi agar menyelamatkan diri. Tetapi, sudah terlambat dikarenakan pemberontak tersebut telah berada tepat di depannya.
+                    </p>
+                    <div class="bg-maroon-900/5 border-l-4 border-maroon-800 p-6 my-8 rounded-r-lg">
+                        <p class="italic font-medium text-maroon-900">
+                            Dan para pemberontak itu mencoba untuk menusuk perut Hang Tuah dengan keris, tetapi Hang Tuah berhasil menghindarinya. Kemudian ketika terdapat kesempatan, Hang Tuah mengayunkan kapak untuk membelah kayunya tepat di atas kepala pemberontak itu dan kemudian pemberontak itu pun mati.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BAGIAN 3: Pengakuan, Fitnah & Pelarian -->
+            <section class="reveal">
+                <div class="text-center mb-8">
+                    <span class="font-royal text-maroon-800 font-bold tracking-widest text-sm uppercase">Bagian Ketiga</span>
+                    <h2 class="text-3xl font-royal text-gold-600 mt-2">Fitnah di Balik Istana</h2>
+                    <div class="ornament-line"><i class="fas fa-khanda ornament-icon"></i></div>
+                </div>
+                
+                <div class="space-y-6 text-lg leading-relaxed text-ink text-justify">
+                    <p>
+                        Berita Hang Tuah yang berhasil mengalahkan seorang pemberontak pun telah tersebar di seluruh negeri. Ia pun lalu diundang ke dalam istana oleh raja. Untuk suatu bentuk terimakasihnya, raja sering mengundangnya untuk dapat ke istana dan kemudian menjadi seseorang yang dipercayai oleh raja.
+                    </p>
+                    <p>
+                        Hal itu pasti membuat sejumlah pegawai dan juga Tumenggung merasa iri terhadapnya. Orang-orang itu kemudian bekerjasama dan kemudian memfitnah Hang Tuah. Seorang Tumenggung mengatakan kepada raja bahwasanya Hang Tuah sudah merencanakan pengkhianatannya terhadap kerajaan dan ia juga tengah mendekati seorang gadis yang ada di istana yang bernama Dang Setia.
+                    </p>
+                    <p>
+                        Setelah mendengar itu, Raja kemudian menjadi marah dan kemudian menyuruh sejumlah pengawalnya untuk membunuh Hang Tuah. Tetapi, Allah melindunginya yang tak bersalah itu sehingga pengawal tak bisa membunuh Hang Tuah. Dikarenakan tak mau meninggalkan masalah lainnya, akhirnya Hang Tuah pun memilih untuk mengasingkan dirinya ke dalam hutan.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Akhir Cerita -->
+            <div class="mt-20 text-center reveal">
+                <div class="inline-flex items-center justify-center gap-3 text-gold-500">
+                    <div class="w-16 h-px bg-gold-400"></div>
+                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-leaf"></i>
+                    <div class="w-16 h-px bg-gold-400"></div>
+                </div>
+                <p class="mt-4 font-royal text-maroon-800 font-bold tracking-widest text-sm uppercase">Tamat</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-maroon-900 text-gold-400 py-10 mt-10 text-center border-t-4 border-gold-600">
+        <p class="font-royal text-2xl tracking-widest mb-2 flex items-center justify-center gap-2">
+            <i class="fas fa-scroll text-xl"></i> H I K A Y A T
+        </p>
+        <p class="text-sm text-gray-400 font-sans">Kumpulan Teks Sastra Melayu Klasik</p>
+    </footer>
+
+    <!-- Interactive Scripts for Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
