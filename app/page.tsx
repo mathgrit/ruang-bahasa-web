@@ -53,7 +53,7 @@ const materials = [
   {
     title: 'Puisi',
     subtitle: 'Sub-capaian 1: Menganalisis & Membaca',
-    youtubeId: 'LXb3EKWsInQ', 
+    youtubeId: 'GOPUs6KdFfM', 
     btnText: 'Contoh Teks',
     materiLink: '/materi-puisi1.html',
     contohKaryaLink: '/contoh-puisi.html', // <-- Link file HTML untuk Contoh Teks
