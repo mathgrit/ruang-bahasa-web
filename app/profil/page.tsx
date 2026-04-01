@@ -101,7 +101,7 @@ export default function ProfilPage() {
           <h2 className="text-3xl font-serif font-bold text-amber-300 mb-8">Koleksi Karya</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { 
+             /* { 
                 title: 'Panduan Menulis Puisi Modern',
                 type: 'E-book',
                 link: 'https://example.com/panduan-puisi',
@@ -112,13 +112,25 @@ export default function ProfilPage() {
                 type: 'Video Tutorial',
                 link: 'https://example.com/workshop-sastra',
                 icon: '🎬'
-              },
+              },*/
               { 
-                title: 'Analisis Cerpen Kontemporer',
+                title: 'Efikasi Diri Sebagai Faktor Keberhasilan dalam Linguistik',
                 type: 'Artikel',
-                link: 'https://example.com/analisis-cerpen',
+                link: 'https://scholar.google.com/citations?view_op=view_citation&hl=id&user=j3_6qxYAAAAJ&citation_for_view=j3_6qxYAAAAJ:d1gkVwhDpl0C',
                 icon: '📝'
               },
+              { 
+                title: 'Analiss Farasa Endosentris dan Eksosentris pada lagi Lesung Pipi Ciptaan Raim Laode',
+                type: 'Artikel',
+                link: 'https://scholar.google.com/citations?view_op=view_citation&hl=id&user=j3_6qxYAAAAJ&citation_for_view=j3_6qxYAAAAJ:u5HHmVD_uO8C',
+                icon: '📝'
+              },
+              { 
+                title: 'Analisis Sosilogi Sastra pada Tokoh Jose Karosta dalam Naskah Mostodon dan Burung Kondor Karya WS. Rendra',
+                type: 'Artikel',
+                link: 'https://scholar.google.com/citations?view_op=view_citation&hl=id&user=j3_6qxYAAAAJ&citation_for_view=j3_6qxYAAAAJ:u-x6o8ySG0sC',
+                icon: '📝'
+              },/*
               { 
                 title: 'Kumpulan Puisi Terbaik',
                 type: 'Publikasi',
@@ -136,7 +148,7 @@ export default function ProfilPage() {
                 type: 'Podcast',
                 link: 'https://example.com/podcast-sastra',
                 icon: '🎙️'
-              },
+              },*/
             ].map((work, idx) => (
               <a
                 key={idx}
@@ -165,7 +177,7 @@ export default function ProfilPage() {
 
         <footer className="border-t border-white/10 mt-16 sm:mt-20 lg:mt-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center text-sm text-slate-400">
-            <p className="font-medium">© 2024 Ruang Bahasa. Semua hak cipta dilindungi.</p>
+            <p className="font-medium">© 2026 Ruang Bahasa. Semua hak cipta dilindungi.</p>
           </div>
         </footer>
       </div>
