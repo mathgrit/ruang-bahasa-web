@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seni Mencipta Puisi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        dark: '#0f172a', // slate-900
+                        card: '#1e293b', // slate-800
+                        gold: '#fbbf24', // amber-400
+                        goldlight: '#fde68a', // amber-200
+                        accent: '#818cf8', // indigo-400
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #cbd5e1; }
+        
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-gold {
+            background: rgba(251, 191, 36, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .glass-accent {
+            background: rgba(129, 140, 248, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
+
+        /* Glowing text effect */
+        .glow-text { text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+        .glow-accent { text-shadow: 0 0 15px rgba(129, 140, 248, 0.5); }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-dark">
+
+    <!-- Navbar Sticky -->
+    <nav class="fixed w-full z-50 top-0 glass border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-serif font-bold text-xl text-white tracking-widest flex items-center gap-2">
+                    <i class="fas fa-feather-alt text-gold"></i> P U I S I<span class="text-gold">.</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6 text-sm">
+                        <a href="#pengertian" class="hover:text-gold transition-colors text-gray-300">Pengertian</a>
+                        <a href="#langkah" class="hover:text-gold transition-colors text-gray-300">Langkah Menulis</a>
+                        <a href="#tips" class="hover:text-gold transition-colors text-gray-300">Tips Imajinasi</a>
+                        <a href="#referensi" class="hover:text-gold transition-colors text-gray-300">Daftar Pustaka</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Decorative background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-pulse"></div>
+            <div class="absolute top-40 right-10 w-72 h-72 bg-gold rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <p class="text-accent tracking-[0.3em] text-sm font-semibold uppercase mb-4">Materi Karya Sastra</p>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Seni Mencipta <br> <span class="italic font-light glow-text text-gold">Karya Puisi</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto mb-10">
+                "Menuangkan gagasan, pengalaman, dan perasaan ke dalam bentuk bahasa yang indah, padat, dan bermakna."
+            </p>
+            <a href="#pengertian" class="inline-flex items-center justify-center px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-full font-medium tracking-wide">
+                Mulai Berkarya <i class="fas fa-pen-fancy ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Content Sections -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 pb-32 relative z-10">
+
+        <!-- 1. Pengertian -->
+        <section id="pengertian" class="reveal pt-20">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-px bg-gold w-12"></div>
+                <h2 class="text-3xl font-serif text-white">Apa itu Mencipta Puisi?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-3 text-gray-300 leading-relaxed space-y-4">
+                    <p class="text-lg">
+                        Mencipta puisi adalah kegiatan menghasilkan karya puisi dengan memperhatikan unsur-unsur pembangun puisi seperti tema, pilihan kata (diksi), majas, rima, dan imaji. 
+                    </p>
+                    <p>
+                        Dalam mencipta puisi, penulis menuangkan gagasan, pengalaman, perasaan, dan imajinasinya ke dalam bentuk bahasa yang indah, padat, dan bermakna. Kegiatan ini tidak sekadar menulis kata-kata, melainkan melibatkan kreativitas dan kepekaan rasa.
+                    </p>
+                </div>
+                
+                <div class="md:col-span-2 glass-gold p-8 rounded-2xl relative">
+                    <i class="fas fa-quote-left text-4xl text-gold/20 absolute top-4 left-4"></i>
+                    <p class="relative z-10 text-lg italic text-gray-300 leading-relaxed font-serif pt-4">
+                        "Puisi merupakan bentuk karya sastra yang mengungkapkan pikiran dan perasaan penyair secara imajinatif dengan bahasa yang dipadatkan dan disusun secara estetis."
+                    </p>
+                    <div class="mt-6 text-gold text-sm font-bold uppercase tracking-wider border-t border-gold/20 pt-4">— Herman J. Waluyo (2002)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Langkah-langkah -->
+        <section id="langkah" class="reveal pt-20">
+            <div class="text-center mb-16">
+                <p class="text-gold tracking-widest text-sm font-bold uppercase mb-2">Proses Kreatif</p>
+                <h2 class="text-4xl font-serif text-white">Langkah-Langkah Menulis Puisi</h2>
+            </div>
+
+            <div class="space-y-6 max-w-4xl mx-auto relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-gold before:via-accent before:to-dark">
+                
+                <!-- Step 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-gold text-dark font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        1
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl hover:-translate-y-1 transition-transform border border-gray-700">
+                        <h4 class="font-serif text-xl text-gold mb-2">Menentukan Tema</h4>
+                        <p class="text-sm text-gray-300 mb-2">Ide pokok atau gagasan utama yang menjadi dasar arah isi puisi agar tetap terfokus.</p>
+                        <p class="text-xs text-gray-400 italic">Contoh: Alam, persahabatan, keluarga, cinta tanah air, atau pengalaman pribadi.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-gold text-dark font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        2
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl hover:-translate-y-1 transition-transform border border-gray-700">
+                        <h4 class="font-serif text-xl text-gold mb-2">Menentukan Amanat</h4>
+                        <p class="text-sm text-gray-300 mb-2">Pesan atau nilai hidup yang ingin disampaikan kepada pembaca.</p>
+                        <p class="text-xs text-gray-400 italic">Contoh: Ajakan untuk menjaga kelestarian alam atau menghargai keindahan ciptaan Tuhan.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-gold text-dark font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        3
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl hover:-translate-y-1 transition-transform border border-gray-700">
+                        <h4 class="font-serif text-xl text-gold mb-2">Menentukan Kata Kunci</h4>
+                        <p class="text-sm text-gray-300 mb-2">Bahan dasar penyusunan larik (kata benda, sifat, atau kerja) yang berkaitan dengan tema.</p>
+                        <p class="text-xs text-gray-400 italic border-l-2 border-gold pl-2">Tema Hujan: hujan, awan, langit, dingin, rintik, payung.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-accent text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        4
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-accent p-6 rounded-xl hover:-translate-y-1 transition-transform">
+                        <h4 class="font-serif text-xl text-accent mb-2">Mengembangkan Larik</h4>
+                        <p class="text-sm text-gray-300 mb-3">Merangkai kata kunci menjadi kalimat/baris yang memiliki nuansa puitis dan makna mendalam.</p>
+                        <div class="bg-card/50 p-3 rounded border border-gray-700 text-gray-300 font-serif italic text-sm">
+                            "Rintik hujan jatuh perlahan<br>Langit kelabu menyelimuti pagi"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-accent text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        5
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-accent p-6 rounded-xl hover:-translate-y-1 transition-transform">
+                        <h4 class="font-serif text-xl text-accent mb-2">Menyusun Bait</h4>
+                        <p class="text-sm text-gray-300 mb-3">Kumpulan beberapa larik yang membentuk satu kesatuan makna yang runtut dan jelas.</p>
+                        <div class="bg-card/50 p-3 rounded border border-gray-700 text-gray-300 font-serif italic text-sm">
+                            "Rintik hujan jatuh perlahan<br>Langit kelabu menyelimuti pagi<br>Angin berhembus membawa sejuk<br>Menenangkan hati yang sunyi"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-accent text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-accent p-6 rounded-xl hover:-translate-y-1 transition-transform">
+                        <h4 class="font-serif text-xl text-accent mb-2">Menyunting (Editing)</h4>
+                        <p class="text-sm text-gray-300 mb-2">Tahap penyempurnaan agar puisi enak dibaca.</p>
+                        <ul class="text-xs text-gray-400 list-disc pl-4 space-y-1">
+                            <li>Memperbaiki pilihan kata agar lebih puitis.</li>
+                            <li>Memastikan kesesuaian makna dengan tema & amanat.</li>
+                            <li>Memperhatikan keindahan bunyi atau rima.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. Tips Imajinasi -->
+        <section id="tips" class="reveal pt-20">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-px bg-gold w-12"></div>
+                <h2 class="text-3xl font-serif text-white">Tips Menemukan Imajinasi</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass p-6 rounded-2xl relative group hover:border-gold/50 transition-colors">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-eye text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Mengamati Lingkungan</h3>
+                    <p class="text-gray-400 text-sm">Perhatikan alam sekitar, aktivitas manusia, atau rentetan peristiwa sehari-hari di dekatmu.</p>
+                </div>
+
+                <div class="glass p-6 rounded-2xl relative group hover:border-gold/50 transition-colors">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-brain text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Mengingat Pengalaman</h3>
+                    <p class="text-gray-400 text-sm">Gali memori pribadimu yang berkesan, baik yang sifatnya menyenangkan maupun menyedihkan.</p>
+                </div>
+
+                <div class="glass p-6 rounded-2xl relative group hover:border-gold/50 transition-colors">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cloud-moon text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Membayangkan Suasana</h3>
+                    <p class="text-gray-400 text-sm">Ciptakan gambaran yang hidup dalam pikiranmu mengenai suatu tempat atau peristiwa tertentu.</p>
+                </div>
+
+                <div class="glass p-6 rounded-2xl relative group hover:border-accent/50 transition-colors border-gray-700">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-book-open text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Membaca Karya Lain</h3>
+                    <p class="text-gray-400 text-sm">Baca berbagai karya puisi seniman lain untuk mendapatkan inspirasi dan memperkaya kosakatamu.</p>
+                </div>
+
+                <div class="glass p-6 rounded-2xl relative group hover:border-accent/50 transition-colors border-gray-700">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-pen-nib text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Catat Kata Kunci</h3>
+                    <p class="text-gray-400 text-sm">Segera tuliskan kata-kata yang tiba-tiba muncul di pikiran sebelum ia menguap dan hilang.</p>
+                </div>
+
+                <div class="glass p-6 rounded-2xl relative group hover:border-accent/50 transition-colors border-gray-700">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-heart text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Gunakan Perasaan</h3>
+                    <p class="text-gray-400 text-sm">Jadikan emosi yang jujur (bahagia, rindu, sedih, atau harapan) sebagai sumber inspirasi utamamu.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. Daftar Pustaka -->
+        <section id="referensi" class="reveal pt-20">
+            <div class="glass border border-gray-700 rounded-2xl p-8 md:p-10">
+                <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gray-700 pb-4">Daftar Pustaka</h2>
+                <ul class="space-y-4 text-gray-400 text-sm leading-relaxed">
+                    <li class="pl-4 border-l-2 border-transparent hover:border-gold hover:text-gray-300 transition-all">
+                        Kementerian Pendidikan dan Kebudayaan. 2017. <span class="italic">Bahasa Indonesia SMP/MTs</span>. Jakarta: Kemendikbud.
+                    </li>
+                    <li class="pl-4 border-l-2 border-transparent hover:border-gold hover:text-gray-300 transition-all">
+                        Keraf, Gorys. 2009. <span class="italic">Diksi dan Gaya Bahasa</span>. Jakarta: Gramedia Pustaka Utama.
+                    </li>
+                    <li class="pl-4 border-l-2 border-transparent hover:border-gold hover:text-gray-300 transition-all">
+                        Pradopo, Rachmat Djoko. 2010. <span class="italic">Pengkajian Puisi</span>. Yogyakarta: Gadjah Mada University Press.
+                    </li>
+                    <li class="pl-4 border-l-2 border-transparent hover:border-gold hover:text-gray-300 transition-all">
+                        Waluyo, Herman J. 2002. <span class="italic">Teori dan Apresiasi Puisi</span>. Jakarta: Erlangga.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-dark border-t border-gray-800 py-10 text-center">
+        <p class="font-serif text-gold text-2xl tracking-widest mb-2 flex items-center justify-center gap-2">
+            <i class="fas fa-feather-alt text-xl"></i> P U I S I<span class="text-white">.</span>
+        </p>
+        <p class="text-sm text-gray-500">Materi Pembelajaran Bahasa Indonesia: Seni Mencipta Sastra</p>
+    </footer>
+
+    <!-- Interactive Scripts for Animations -->
+    <script>
+        // Simple Intersection Observer for scroll animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
