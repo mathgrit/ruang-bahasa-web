@@ -63,7 +63,7 @@ const materials = [
   {
     title: 'Puisi',
     subtitle: 'Sub-capaian 2: Mencipta',
-    youtubeId: 'tgbNymZ7vqY', 
+    youtubeId: 'N0YSlUeMOtI', 
     btnText: 'Hasil Karya',
     materiLink: '#',
     contohKaryaLink: '/karya-puisi.html', // <-- Link file HTML untuk Hasil Karya
