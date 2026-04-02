@@ -65,7 +65,7 @@ const materials = [
     subtitle: 'Sub-capaian 2: Mencipta',
     youtubeId: 'N0YSlUeMOtI', 
     btnText: 'Hasil Karya',
-    materiLink: '#',
+    materiLink: '/materi-puisi2.html',
     contohKaryaLink: '/karya-puisi.html', // <-- Link file HTML untuk Hasil Karya
     lkpdLink: '#',
     isDropdown: false,
