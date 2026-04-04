@@ -73,7 +73,7 @@ const materials = [
   {
     title: 'Hikayat & Cerpen',
     subtitle: 'Sub-capaian 1: Menganalisis',
-    youtubeId: 'jfKfPfyJRdk', 
+    youtubeId: 'b5Kn9MVxRDQ', 
     btnText: 'Contoh Teks',
     materiLink: '/materi-hikayat1.html',
     contohKaryaLink: '/contoh-hikayat.html', // <-- Link file HTML untuk Contoh Teks
