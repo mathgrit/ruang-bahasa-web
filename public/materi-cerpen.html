@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Menulis Cerpen - Ruang Bahasa</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        slate: { 850: '#151e32', 900: '#0f172a', 950: '#020617' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #020617; color: #cbd5e1; overflow-x: hidden; }
+        
+        .dark-mesh-background { position: relative; background-color: #0f172a; }
+        .mesh-glow-amber { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0) 70%); border-radius: 50%; filter: blur(60px); }
+        .mesh-glow-indigo { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0) 70%); border-radius: 50%; filter: blur(80px); }
+        .dot-pattern { background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 24px 24px; }
+
+        .glassmorphism { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(251, 191, 36, 0.2); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(251, 191, 36, 0.5); transform: translateY(-6px); box-shadow: 0 15px 35px -10px rgba(251, 191, 36, 0.25); }
+
+        /* Scroll Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Checkbox Animation */
+        .check-card { cursor: pointer; transition: all 0.3s ease; }
+        .check-card.checked { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.5); transform: scale(0.98); }
+        .check-icon { transition: all 0.3s ease; }
+        .check-card.checked .check-icon { color: #34d399; transform: scale(1.2) rotate(10deg); }
+
+        /* Progress Bar */
+        #progressBar { transform-origin: left; transform: scaleX(0); transition: transform 0.2s ease-out; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-slate-800 z-[60]">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-amber-400 to-indigo-500 w-full"></div>
+    </div>
+
+    <div class="dark-mesh-background min-h-screen">
+        
+        <!-- Background Effects -->
+        <div class="fixed inset-0 z-0 pointer-events-none">
+            <div class="mesh-glow-amber -top-32 -left-32"></div>
+            <div class="mesh-glow-indigo bottom-1/4 -right-32"></div>
+            <div class="absolute inset-0 dot-pattern"></div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="fixed w-full z-50 top-1.5 bg-slate-900/80 backdrop-blur-md border-b border-white/5 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto flex items-center justify-between h-16">
+                <a href="javascript:history.back()" class="flex items-center gap-2 text-slate-300 hover:text-amber-400 transition-colors group">
+                    <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-amber-400/20 group-hover:-translate-x-1 transition-all">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium hidden sm:block">Kembali</span>
+                </a>
+                <div class="font-serif font-bold text-xl text-white tracking-widest">
+                    Ruang Bahasa<span class="text-amber-400">.</span>
+                </div>
+                <div class="w-8 sm:w-20"></div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="relative z-10 pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto overflow-hidden">
+            
+            <!-- Header -->
+            <header class="text-center mb-20 reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-bold tracking-widest uppercase mb-6 animate-pulse">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Interactive Module
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 leading-tight mb-6">
+                    Materi Menulis Cerpen
+                </h1>
+                <p class="text-lg text-indigo-200/80 max-w-2xl mx-auto font-light">
+                    Panduan lengkap langkah demi langkah untuk menghasilkan karya sastra yang memukau. Gulir untuk menjelajah.
+                </p>
+            </header>
+
+            <div class="space-y-20">
+
+                <!-- 1. Langkah-Langkah -->
+                <section>
+                    <div class="flex items-center gap-4 mb-8 reveal">
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center border border-amber-400/30">
+                            <span class="font-serif text-2xl font-bold text-amber-400">1</span>
+                        </div>
+                        <h2 class="text-3xl font-serif font-bold text-white">Langkah-Langkah Menulis</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- 1a. Tema -->
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 reveal delay-100">
+                            <h3 class="text-xl font-serif font-semibold text-amber-300 mb-4 flex items-center gap-3">
+                                <div class="p-2 bg-indigo-500/20 rounded-lg"><i data-lucide="lightbulb" class="w-5 h-5 text-indigo-400"></i></div>
+                                a. Menentukan Tema Cerita
+                            </h3>
+                            <p class="text-slate-300 mb-6 font-light">Tema merupakan gagasan utama yang menjadi dasar cerita dan arah bagi penulis. Tema dapat diambil dari pengalaman pribadi, masalah sosial, hingga persahabatan.</p>
+                            <div class="bg-slate-900/50 rounded-xl p-5 border border-white/5">
+                                <p class="text-indigo-300 font-medium mb-3 text-sm uppercase tracking-wider">Sumber Inspirasi Tema:</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-amber-400/10 transition-colors group">
+                                        <i data-lucide="eye" class="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-sm text-slate-300">Mengamati peristiwa sekitar</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-amber-400/10 transition-colors group">
+                                        <i data-lucide="brain-circuit" class="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-sm text-slate-300">Pengalaman pribadi</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-amber-400/10 transition-colors group">
+                                        <i data-lucide="film" class="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-sm text-slate-300">Inspirasi cerita/film lain</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-amber-400/10 transition-colors group">
+                                        <i data-lucide="message-circle" class="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-sm text-slate-300">Pesan moral (Amanat)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1b & 1c -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- 1b Tokoh -->
+                            <div class="glass-card rounded-2xl p-6 sm:p-8 reveal">
+                                <h3 class="text-xl font-serif font-semibold text-amber-300 mb-4 flex items-center gap-3">
+                                    <div class="p-2 bg-indigo-500/20 rounded-lg"><i data-lucide="users" class="w-5 h-5 text-indigo-400"></i></div>
+                                    b. Tokoh & Karakter
+                                </h3>
+                                <div class="space-y-4 mt-6">
+                                    <div class="group relative p-4 rounded-xl bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20 hover:border-emerald-500/50 transition-all cursor-default overflow-hidden">
+                                        <div class="absolute right-[-10px] top-[-10px] opacity-10 group-hover:opacity-20 transition-opacity"><i data-lucide="shield-check" class="w-24 h-24 text-emerald-400"></i></div>
+                                        <span class="block text-emerald-400 font-bold mb-1">Protagonis</span>
+                                        <span class="text-slate-300 text-sm relative z-10">Tokoh utama yang biasanya memiliki sifat baik.</span>
+                                    </div>
+                                    <div class="group relative p-4 rounded-xl bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 hover:border-rose-500/50 transition-all cursor-default overflow-hidden">
+                                        <div class="absolute right-[-10px] top-[-10px] opacity-10 group-hover:opacity-20 transition-opacity"><i data-lucide="swords" class="w-24 h-24 text-rose-400"></i></div>
+                                        <span class="block text-rose-400 font-bold mb-1">Antagonis</span>
+                                        <span class="text-slate-300 text-sm relative z-10">Tokoh lawan yang menimbulkan konflik.</span>
+                                    </div>
+                                    <div class="group relative p-4 rounded-xl bg-gradient-to-r from-indigo-500/10 to-transparent border border-indigo-500/20 hover:border-indigo-500/50 transition-all cursor-default overflow-hidden">
+                                        <div class="absolute right-[-10px] top-[-10px] opacity-10 group-hover:opacity-20 transition-opacity"><i data-lucide="users-2" class="w-24 h-24 text-indigo-400"></i></div>
+                                        <span class="block text-indigo-400 font-bold mb-1">Tritagonis</span>
+                                        <span class="text-slate-300 text-sm relative z-10">Tokoh pendukung dalam cerita.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 1c Latar -->
+                            <div class="glass-card rounded-2xl p-6 sm:p-8 reveal delay-100">
+                                <h3 class="text-xl font-serif font-semibold text-amber-300 mb-4 flex items-center gap-3">
+                                    <div class="p-2 bg-indigo-500/20 rounded-lg"><i data-lucide="map" class="w-5 h-5 text-indigo-400"></i></div>
+                                    c. Latar Cerita
+                                </h3>
+                                <div class="grid grid-cols-1 gap-4 mt-6">
+                                    <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                        <div class="w-12 h-12 rounded-full bg-amber-400/20 flex items-center justify-center text-amber-400 shrink-0"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                                        <div>
+                                            <div class="text-amber-300 font-bold">Latar Tempat</div>
+                                            <div class="text-slate-400 text-sm">Rumah, sekolah, desa, dll.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                        <div class="w-12 h-12 rounded-full bg-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0"><i data-lucide="clock" class="w-6 h-6"></i></div>
+                                        <div>
+                                            <div class="text-indigo-300 font-bold">Latar Waktu</div>
+                                            <div class="text-slate-400 text-sm">Pagi, malam, masa lalu.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                        <div class="w-12 h-12 rounded-full bg-rose-400/20 flex items-center justify-center text-rose-400 shrink-0"><i data-lucide="cloud-lightning" class="w-6 h-6"></i></div>
+                                        <div>
+                                            <div class="text-rose-300 font-bold">Latar Suasana</div>
+                                            <div class="text-slate-400 text-sm">Sedih, tegang, bahagia.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1d Interactive Tabs (Alur) -->
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 reveal">
+                            <h3 class="text-xl font-serif font-semibold text-amber-300 mb-6 flex items-center gap-3">
+                                <div class="p-2 bg-indigo-500/20 rounded-lg"><i data-lucide="git-merge" class="w-5 h-5 text-indigo-400"></i></div>
+                                d. Menyusun Alur Cerita (Interaktif)
+                            </h3>
+                            
+                            <!-- Tab Buttons -->
+                            <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-4">
+                                <button onclick="switchTab('tab-orientasi')" id="btn-orientasi" class="tab-btn active px-4 py-2 rounded-lg bg-indigo-500/30 border border-indigo-400 text-white text-sm font-semibold transition-all">1. Orientasi</button>
+                                <button onclick="switchTab('tab-konflik')" id="btn-konflik" class="tab-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 text-sm font-semibold hover:bg-white/10 transition-all">2. Konflik</button>
+                                <button onclick="switchTab('tab-klimaks')" id="btn-klimaks" class="tab-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 text-sm font-semibold hover:bg-white/10 transition-all">3. Klimaks</button>
+                                <button onclick="switchTab('tab-resolusi')" id="btn-resolusi" class="tab-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 text-sm font-semibold hover:bg-white/10 transition-all">4. Resolusi</button>
+                            </div>
+
+                            <!-- Tab Contents -->
+                            <div class="min-h-[120px]">
+                                <div id="tab-orientasi" class="tab-content block animate-[fadeIn_0.3s_ease-out]">
+                                    <div class="p-5 rounded-xl bg-indigo-900/30 border border-indigo-500/30">
+                                        <h4 class="text-lg font-bold text-indigo-300 mb-2">Pengenalan (Orientasi)</h4>
+                                        <p class="text-slate-300 text-sm font-light">Tahap awal cerita di mana penulis memperkenalkan tokoh utama, latar tempat, dan waktu sebelum masalah muncul. Bertujuan memancing ketertarikan pembaca.</p>
+                                    </div>
+                                </div>
+                                <div id="tab-konflik" class="tab-content hidden animate-[fadeIn_0.3s_ease-out]">
+                                    <div class="p-5 rounded-xl bg-amber-900/30 border border-amber-500/30">
+                                        <h4 class="text-lg font-bold text-amber-300 mb-2">Munculnya Masalah (Konflik)</h4>
+                                        <p class="text-slate-300 text-sm font-light">Keadaan mulai berubah. Tokoh utama berhadapan dengan suatu masalah, rintangan, atau tokoh antagonis yang mengganggu ketenangannya.</p>
+                                    </div>
+                                </div>
+                                <div id="tab-klimaks" class="tab-content hidden animate-[fadeIn_0.3s_ease-out]">
+                                    <div class="p-5 rounded-xl bg-rose-900/30 border border-rose-500/30">
+                                        <h4 class="text-lg font-bold text-rose-300 mb-2">Puncak Ketegangan (Klimaks)</h4>
+                                        <p class="text-slate-300 text-sm font-light">Momen paling mendebarkan! Konflik mencapai titik tertinggi, dan pembaca dibuat penasaran tentang bagaimana tokoh utama akan menyelesaikan masalah tersebut.</p>
+                                    </div>
+                                </div>
+                                <div id="tab-resolusi" class="tab-content hidden animate-[fadeIn_0.3s_ease-out]">
+                                    <div class="p-5 rounded-xl bg-emerald-900/30 border border-emerald-500/30">
+                                        <h4 class="text-lg font-bold text-emerald-300 mb-2">Penyelesaian (Resolusi)</h4>
+                                        <p class="text-slate-300 text-sm font-light">Jalan keluar dari konflik telah ditemukan. Akhir cerita bisa berupa kebahagiaan (happy ending), kesedihan (sad ending), atau dibiarkan menggantung.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. Teknik Pengembangan -->
+                <section>
+                    <div class="flex items-center gap-4 mb-8 reveal">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-400/20 flex items-center justify-center border border-indigo-400/30">
+                            <span class="font-serif text-2xl font-bold text-indigo-400">2</span>
+                        </div>
+                        <h2 class="text-3xl font-serif font-bold text-white">Teknik Mengembangkan Cerita</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Teknik Dialog -->
+                        <div class="glassmorphism p-6 rounded-2xl border-t-4 border-t-amber-400 hover:bg-white/10 transition-all reveal">
+                            <div class="w-12 h-12 rounded-full bg-amber-400/20 flex items-center justify-center mb-4 text-amber-400">
+                                <i data-lucide="message-square-quote" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-slate-100 mb-3">Teknik Dialog</h3>
+                            <p class="text-slate-400 text-sm mb-4 font-light">Percakapan antar tokoh untuk menghidupkan cerita dan menunjukkan sifat asli karakter.</p>
+                            <ul class="text-xs text-slate-300 space-y-2 mt-auto">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-amber-400"></i> Sesuaikan gaya bahasa karakter</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-amber-400"></i> Hindari dialog yang bertele-tele</li>
+                            </ul>
+                        </div>
+
+                        <!-- Teknik Deskripsi -->
+                        <div class="glassmorphism p-6 rounded-2xl border-t-4 border-t-indigo-400 hover:bg-white/10 transition-all reveal delay-100">
+                            <div class="w-12 h-12 rounded-full bg-indigo-400/20 flex items-center justify-center mb-4 text-indigo-400">
+                                <i data-lucide="image" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-slate-100 mb-3">Teknik Deskripsi</h3>
+                            <p class="text-slate-400 text-sm font-light mb-4">Membangun suasana dengan kata-kata agar pembaca seolah bisa melihat, mendengar, dan merasakan latar cerita.</p>
+                            <div class="p-3 bg-indigo-500/10 rounded-lg text-xs text-indigo-200 italic border border-indigo-500/20">
+                                "Hujan turun rintik-rintik, membawa aroma tanah basah yang menyusup lewat jendela kelas yang setengah terbuka..."
+                            </div>
+                        </div>
+
+                        <!-- Membangun Konflik -->
+                        <div class="glassmorphism p-6 rounded-2xl border-t-4 border-t-rose-400 hover:bg-white/10 transition-all reveal">
+                            <div class="w-12 h-12 rounded-full bg-rose-400/20 flex items-center justify-center mb-4 text-rose-400">
+                                <i data-lucide="flame" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-slate-100 mb-3">Membangun Konflik</h3>
+                            <p class="text-slate-400 text-sm font-light mb-4">Tanpa konflik, cerita akan terasa datar. Ciptakan masalah melalui 3 sumber utama:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">Batin (Diri Sendiri)</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">Antagonis</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">Lingkungan/Alam</span>
+                            </div>
+                        </div>
+
+                        <!-- Ending -->
+                        <div class="glassmorphism p-6 rounded-2xl border-t-4 border-t-emerald-400 hover:bg-white/10 transition-all reveal delay-100">
+                            <div class="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center mb-4 text-emerald-400">
+                                <i data-lucide="flag-triangle-right" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-slate-100 mb-3">Menentukan Ending</h3>
+                            <p class="text-slate-400 text-sm font-light mb-4">Kesan terakhir yang akan terus diingat oleh pembaca setelah menutup cerita.</p>
+                            <div class="flex gap-2">
+                                <div class="flex-1 text-center p-2 rounded bg-white/5 text-xs text-emerald-300">Bahagia</div>
+                                <div class="flex-1 text-center p-2 rounded bg-white/5 text-xs text-rose-300">Sedih</div>
+                                <div class="flex-1 text-center p-2 rounded bg-white/5 text-xs text-amber-300">Terbuka</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. Menyunting (Interactive Checklist) -->
+                <section>
+                    <div class="flex items-center gap-4 mb-4 reveal">
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center border border-amber-400/30">
+                            <span class="font-serif text-2xl font-bold text-amber-400">3</span>
+                        </div>
+                        <h2 class="text-3xl font-serif font-bold text-white">Ceklis Menyunting</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8 font-light reveal">Klik pada setiap kartu di bawah jika kamu sudah melakukan tahap penyuntingan tersebut pada cerpenmu!</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Checklist Items -->
+                        <div onclick="toggleCheck(this)" class="check-card glassmorphism p-5 rounded-2xl border-2 border-white/10 flex items-center gap-4 reveal">
+                            <div class="w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center shrink-0 bg-slate-900/50">
+                                <i data-lucide="check" class="check-icon w-4 h-4 text-transparent"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">1. Merevisi Isi</h3>
+                                <p class="text-xs text-slate-400 mt-1">Alur cerita sudah jelas dan runtut.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="toggleCheck(this)" class="check-card glassmorphism p-5 rounded-2xl border-2 border-white/10 flex items-center gap-4 reveal delay-100">
+                            <div class="w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center shrink-0 bg-slate-900/50">
+                                <i data-lucide="check" class="check-icon w-4 h-4 text-transparent"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">2. Struktur Cerita</h3>
+                                <p class="text-xs text-slate-400 mt-1">Awal, tengah, dan akhir tersusun proporsional.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="toggleCheck(this)" class="check-card glassmorphism p-5 rounded-2xl border-2 border-white/10 flex items-center gap-4 reveal">
+                            <div class="w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center shrink-0 bg-slate-900/50">
+                                <i data-lucide="check" class="check-icon w-4 h-4 text-transparent"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">3. Memperbaiki Bahasa</h3>
+                                <p class="text-xs text-slate-400 mt-1">Pilihan kata tidak membosankan dan sesuai.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="toggleCheck(this)" class="check-card glassmorphism p-5 rounded-2xl border-2 border-white/10 flex items-center gap-4 reveal delay-100">
+                            <div class="w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center shrink-0 bg-slate-900/50">
+                                <i data-lucide="check" class="check-icon w-4 h-4 text-transparent"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">4. Ejaan & Tanda Baca</h3>
+                                <p class="text-xs text-slate-400 mt-1">Huruf kapital dan titik koma sudah tepat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="relative z-10 border-t border-white/10 mt-10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-slate-500 font-light flex justify-center items-center gap-2">
+                &copy; 2026 Ruang Bahasa <div class="w-1 h-1 bg-amber-400 rounded-full"></div> Modul Interaktif Sastra
+            </div>
+        </footer>
+    </div>
+
+    <!-- LOGIKA INTERAKTIF (JAVASCRIPT) -->
+    <script>
+        // 1. Inisialisasi Ikon Lucide
+        lucide.createIcons();
+
+        // 2. Logika Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height);
+            document.getElementById('progressBar').style.transform = `scaleX(${scrolled})`;
+        });
+
+        // 3. Logika Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Jarak sebelum elemen muncul
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Jalankan sekali saat pertama kali diload
+
+        // 4. Logika Interactive Tabs (Alur Cerita)
+        function switchTab(tabId) {
+            // Sembunyikan semua konten tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('block');
+                content.classList.add('hidden');
+            });
+
+            // Reset semua style tombol
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.className = 'tab-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 text-sm font-semibold hover:bg-white/10 transition-all';
+            });
+
+            // Tampilkan konten yang dipilih
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId).classList.add('block');
+
+            // Ubah style tombol yang aktif
+            const activeBtnId = 'btn-' + tabId.split('-')[1];
+            const activeBtn = document.getElementById(activeBtnId);
+            
+            // Beri warna berbeda untuk setiap tab agar menarik
+            if(tabId === 'tab-orientasi') activeBtn.className = 'tab-btn px-4 py-2 rounded-lg bg-indigo-500/30 border border-indigo-400 text-white text-sm font-semibold transition-all shadow-[0_0_15px_rgba(99,102,241,0.3)]';
+            if(tabId === 'tab-konflik') activeBtn.className = 'tab-btn px-4 py-2 rounded-lg bg-amber-500/30 border border-amber-400 text-white text-sm font-semibold transition-all shadow-[0_0_15px_rgba(251,191,36,0.3)]';
+            if(tabId === 'tab-klimaks') activeBtn.className = 'tab-btn px-4 py-2 rounded-lg bg-rose-500/30 border border-rose-400 text-white text-sm font-semibold transition-all shadow-[0_0_15px_rgba(244,63,94,0.3)]';
+            if(tabId === 'tab-resolusi') activeBtn.className = 'tab-btn px-4 py-2 rounded-lg bg-emerald-500/30 border border-emerald-400 text-white text-sm font-semibold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]';
+        }
+
+        // 5. Logika Checklist Menyunting
+        function toggleCheck(element) {
+            element.classList.toggle('checked');
+            
+            const icon = element.querySelector('.check-icon');
+            const circle = element.querySelector('div.w-8');
+            const title = element.querySelector('h3');
+
+            if(element.classList.contains('checked')) {
+                // State: Selesai (Hijau/Menyala)
+                icon.classList.remove('text-transparent');
+                circle.classList.remove('border-slate-600', 'bg-slate-900/50');
+                circle.classList.add('border-emerald-400', 'bg-emerald-400/20');
+                title.classList.add('text-emerald-400');
+                title.classList.remove('text-slate-200');
+            } else {
+                // State: Belum
+                icon.classList.add('text-transparent');
+                circle.classList.add('border-slate-600', 'bg-slate-900/50');
+                circle.classList.remove('border-emerald-400', 'bg-emerald-400/20');
+                title.classList.remove('text-emerald-400');
+                title.classList.add('text-slate-200');
+            }
+        }
+    </script>
+</body>
+</html>
