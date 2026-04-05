@@ -1,10 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import { Navbar } from '@/components/navbar';
 
 export default function ProfilPage() {
   return (
-    <div className="dark-mesh-background">
+    <div className="dark-mesh-background min-h-screen">
       {/* Glow Orbs Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Top-left amber glow */}
@@ -28,10 +29,18 @@ export default function ProfilPage() {
         {/* Profile Header */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="glassmorphism p-10 sm:p-12 text-center">
+            
             {/* Profile Picture */}
             <div className="flex justify-center mb-8">
-              <div className="w-32 h-32 rounded-full border-4 border-amber-400 shadow-2xl shadow-amber-400/30 bg-gradient-to-br from-amber-400/20 to-indigo-400/20 flex items-center justify-center">
-                <span className="text-6xl">👩‍🏫</span>
+              <div className="w-32 h-32 rounded-full border-4 border-amber-400 shadow-2xl shadow-amber-400/30 overflow-hidden relative">
+                <Image
+                  src="/image.png" 
+                  alt="Foto Profil Putri Schatzi Abdillah"
+                  width={128} 
+                  height={128} 
+                  className="object-cover w-full h-full" 
+                  priority 
+                />
               </div>
             </div>
 
@@ -101,18 +110,6 @@ export default function ProfilPage() {
           <h2 className="text-3xl font-serif font-bold text-amber-300 mb-8">Koleksi Karya</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-             /* { 
-                title: 'Panduan Menulis Puisi Modern',
-                type: 'E-book',
-                link: 'https://example.com/panduan-puisi',
-                icon: '📚'
-              },
-              { 
-                title: 'Workshop Sastra Indonesia',
-                type: 'Video Tutorial',
-                link: 'https://example.com/workshop-sastra',
-                icon: '🎬'
-              },*/
               { 
                 title: 'Efikasi Diri Sebagai Faktor Keberhasilan dalam Linguistik',
                 type: 'Artikel',
@@ -130,25 +127,7 @@ export default function ProfilPage() {
                 type: 'Artikel',
                 link: 'https://scholar.google.com/citations?view_op=view_citation&hl=id&user=j3_6qxYAAAAJ&citation_for_view=j3_6qxYAAAAJ:u-x6o8ySG0sC',
                 icon: '📝'
-              },/*
-              { 
-                title: 'Kumpulan Puisi Terbaik',
-                type: 'Publikasi',
-                link: 'https://example.com/kumpulan-puisi',
-                icon: '✨'
               },
-              { 
-                title: 'Metode Pengajaran Sastra Inovatif',
-                type: 'Penelitian',
-                link: 'https://example.com/metode-pengajaran',
-                icon: '🔬'
-              },
-              { 
-                title: 'Podcast: Diskusi Sastra Indonesia',
-                type: 'Podcast',
-                link: 'https://example.com/podcast-sastra',
-                icon: '🎙️'
-              },*/
             ].map((work, idx) => (
               <a
                 key={idx}
