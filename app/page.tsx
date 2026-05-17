@@ -83,7 +83,7 @@ interface MaterialCardProps {
   lkpdKelompok?: string;
   lkpdPopupMessage?: string;
   tujuanPembelajaran?: string;
-  pertanyaanPemantik?: string;
+  pertanyaanPemantik?: string | string[];
   qrAsesmenAwal?: string;
   qrAsesmenSumatif?: string;
 }
@@ -160,7 +160,15 @@ function MaterialCard({
                 {pertanyaanPemantik && (
                   <div>
                     <h4 className="text-amber-300 font-medium mb-1">💡 Pertanyaan Pemantik</h4>
-                    <p className="font-light leading-relaxed">{pertanyaanPemantik}</p>
+                    {Array.isArray(pertanyaanPemantik) ? (
+                      <ol className="list-decimal list-outside pl-4 font-light leading-relaxed space-y-2">
+                        {pertanyaanPemantik.map((tanya, idx) => (
+                          <li key={idx} className="pl-1">{tanya}</li>
+                        ))}
+                      </ol>
+                    ) : (
+                      <p className="font-light leading-relaxed">{pertanyaanPemantik}</p>
+                    )}
                   </div>
                 )}
                 {(qrAsesmenAwal || qrAsesmenSumatif) && (
@@ -335,7 +343,11 @@ const materials = [
     lkpdLink: '/lkpd-puisi.pdf',
     isDropdown: false,
     tujuanPembelajaran: 'Peserta didik mampu menganalisis unsur-unsur pembangun puisi dengan tepat dan mengapresiasi maknanya.',
-    pertanyaanPemantik: 'Pernahkah kalian membaca susunan kata singkat yang membuat perasaan kalian campur aduk?',
+    pertanyaanPemantik: [
+      'Pernahkah kalian membaca atau mendengar sebuah puisi? Di mana kalian menemukannya?',
+      'Mengapa sebuah puisi menggunakan kata-kata yang singkat tetapi memiliki makna yang mendalam?',
+      'Coba kalian perhatikan salah satu lagu, menurut kalian, apakah lirik lagu memiliki kesamaan dengan puisi? Mengapa?'
+    ],
     qrAsesmenAwal: '/KODE BATANG ASESMEN AWAL PUISI.png',      // <-- Siapkan file gambar qr-awal.png di folder public
     qrAsesmenSumatif: '/KODE BATANG ASESMEN FORMATIF.png' // <-- Siapkan file gambar qr-sumatif.png di folder public
   },
