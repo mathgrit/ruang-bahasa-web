@@ -8,7 +8,8 @@ import {
   ChevronDown, 
   User, 
   Users,
-  X
+  X,
+  BookOpen
 } from 'lucide-react';
 
 // --- KOMPONEN HEADER ---
@@ -81,6 +82,10 @@ interface MaterialCardProps {
   lkpdIndividu?: string;    
   lkpdKelompok?: string;
   lkpdPopupMessage?: string;
+  tujuanPembelajaran?: string;
+  pertanyaanPemantik?: string;
+  qrAsesmenAwal?: string;
+  qrAsesmenSumatif?: string;
 }
 
 function MaterialCard({ 
@@ -94,7 +99,11 @@ function MaterialCard({
   isDropdown = false,
   lkpdIndividu = '#',
   lkpdKelompok = '#',
-  lkpdPopupMessage
+  lkpdPopupMessage,
+  tujuanPembelajaran,
+  pertanyaanPemantik,
+  qrAsesmenAwal,
+  qrAsesmenSumatif
 }: MaterialCardProps) {
 
   // State untuk mengontrol muncul/hilangnya pop-up
@@ -127,6 +136,57 @@ function MaterialCard({
             className="absolute inset-0 w-full h-full"
           ></iframe>
         </div>
+
+        {/* --- INFO PEMBELAJARAN (Tujuan, Pemantik, Asesmen) --- */}
+        {(tujuanPembelajaran || pertanyaanPemantik) && (
+          <div className="bg-slate-900/50 rounded-xl border border-white/10 overflow-hidden">
+            <details className="group/info">
+              <summary className="flex items-center justify-between p-4 cursor-pointer text-slate-200 font-semibold hover:bg-white/5 transition-colors [&::-webkit-details-marker]:hidden">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+                    <BookOpen className="w-4 h-4" />
+                  </div>
+                  <span className="text-sm">Informasi Pembelajaran</span>
+                </div>
+                <ChevronDown className="w-4 h-4 transition-transform group-open/info:rotate-180 text-slate-500" />
+              </summary>
+              <div className="p-4 pt-0 text-sm space-y-4 text-slate-300 border-t border-white/5 mt-2">
+                {tujuanPembelajaran && (
+                  <div>
+                    <h4 className="text-amber-300 font-medium mb-1">🎯 Tujuan Pembelajaran</h4>
+                    <p className="font-light leading-relaxed">{tujuanPembelajaran}</p>
+                  </div>
+                )}
+                {pertanyaanPemantik && (
+                  <div>
+                    <h4 className="text-amber-300 font-medium mb-1">💡 Pertanyaan Pemantik</h4>
+                    <p className="font-light leading-relaxed">{pertanyaanPemantik}</p>
+                  </div>
+                )}
+                {(qrAsesmenAwal || qrAsesmenSumatif) && (
+                  <div className="grid grid-cols-2 gap-4 pt-3 border-t border-white/5">
+                    {qrAsesmenAwal && (
+                      <div className="text-center">
+                        <h4 className="text-indigo-300 font-medium mb-2 text-xs">Asesmen Awal</h4>
+                        <div className="bg-white p-2 rounded-lg inline-block">
+                          <img src={qrAsesmenAwal} alt="QR Asesmen Awal" className="w-16 h-16 sm:w-20 sm:h-20 object-cover" />
+                        </div>
+                      </div>
+                    )}
+                    {qrAsesmenSumatif && (
+                      <div className="text-center">
+                        <h4 className="text-rose-300 font-medium mb-2 text-xs">Asesmen Sumatif</h4>
+                        <div className="bg-white p-2 rounded-lg inline-block">
+                          <img src={qrAsesmenSumatif} alt="QR Asesmen Sumatif" className="w-16 h-16 sm:w-20 sm:h-20 object-cover" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </details>
+          </div>
+        )}
 
         {/* Bagian Tombol Unduhan */}
         <div className="flex flex-col gap-3 mt-auto">
@@ -274,6 +334,10 @@ const materials = [
     contohKaryaLink: '/contoh-puisi.html', 
     lkpdLink: '/lkpd-puisi.pdf',
     isDropdown: false,
+    tujuanPembelajaran: 'Peserta didik mampu menganalisis unsur-unsur pembangun puisi dengan tepat dan mengapresiasi maknanya.',
+    pertanyaanPemantik: 'Pernahkah kalian membaca susunan kata singkat yang membuat perasaan kalian campur aduk?',
+    qrAsesmenAwal: '/KODE BATANG ASESMEN AWAL PUISI.png',      // <-- Siapkan file gambar qr-awal.png di folder public
+    qrAsesmenSumatif: '/KODE BATANG ASESMEN FORMATIF.png' // <-- Siapkan file gambar qr-sumatif.png di folder public
   },
   {
     title: 'Puisi',
