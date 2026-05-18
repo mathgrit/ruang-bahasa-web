@@ -9,7 +9,10 @@ import {
   User, 
   Users,
   X,
-  BookOpen
+  BookOpen,
+  Target,
+  Lightbulb,
+  ScanLine
 } from 'lucide-react';
 
 // --- KOMPONEN HEADER ---
@@ -106,12 +109,16 @@ function MaterialCard({
   qrAsesmenSumatif
 }: MaterialCardProps) {
 
-  // State untuk mengontrol muncul/hilangnya pop-up
+  // State untuk mengontrol muncul/hilangnya pop-up LKPD
   const [showPopup, setShowPopup] = useState(false);
+  // State untuk mengontrol jenis pop-up Informasi yang sedang terbuka (null = tertutup)
+  const [activeInfoPopup, setActiveInfoPopup] = useState<'tujuan' | 'pemantik' | 'asesmen' | null>(null);
+
+  const hasInfo = tujuanPembelajaran || pertanyaanPemantik || qrAsesmenAwal || qrAsesmenSumatif;
 
   return (
     <>
-      <div className="group relative p-6 sm:p-8 flex flex-col gap-6 h-full rounded-2xl border-2 border-amber-400/60 bg-white/5 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-2 hover:border-amber-400 hover:bg-white/10 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)]">
+      <div className="group relative p-6 sm:p-8 flex flex-col gap-6 h-full rounded-2xl border-2 border-amber-400/60 bg-white/5 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-2 hover:border-amber-400 hover:bg-white/10 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] z-10 hover:z-20">
         
         {/* Header Bagian Judul */}
         <div>
@@ -137,68 +144,49 @@ function MaterialCard({
           ></iframe>
         </div>
 
-        {/* --- INFO PEMBELAJARAN (Tujuan, Pemantik, Asesmen) --- */}
-        {(tujuanPembelajaran || pertanyaanPemantik) && (
-          <div className="bg-slate-900/50 rounded-xl border border-white/10 overflow-hidden">
-            <details className="group/info">
-              <summary className="flex items-center justify-between p-4 cursor-pointer text-slate-200 font-semibold hover:bg-white/5 transition-colors [&::-webkit-details-marker]:hidden">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
-                    <BookOpen className="w-4 h-4" />
-                  </div>
-                  <span className="text-sm">Informasi Pembelajaran</span>
-                </div>
-                <ChevronDown className="w-4 h-4 transition-transform group-open/info:rotate-180 text-slate-500" />
-              </summary>
-              <div className="p-4 pt-0 text-sm space-y-4 text-slate-300 border-t border-white/5 mt-2">
-                {tujuanPembelajaran && (
-                  <div>
-                    <h4 className="text-amber-300 font-medium mb-1">🎯 Tujuan Pembelajaran</h4>
-                    <p className="font-light leading-relaxed">{tujuanPembelajaran}</p>
-                  </div>
-                )}
-                {pertanyaanPemantik && (
-                  <div>
-                    <h4 className="text-amber-300 font-medium mb-1">💡 Pertanyaan Pemantik</h4>
-                    {Array.isArray(pertanyaanPemantik) ? (
-                      <ol className="list-decimal list-outside pl-4 font-light leading-relaxed space-y-2">
-                        {pertanyaanPemantik.map((tanya, idx) => (
-                          <li key={idx} className="pl-1">{tanya}</li>
-                        ))}
-                      </ol>
-                    ) : (
-                      <p className="font-light leading-relaxed">{pertanyaanPemantik}</p>
-                    )}
-                  </div>
-                )}
-                {(qrAsesmenAwal || qrAsesmenSumatif) && (
-                  <div className="grid grid-cols-2 gap-4 pt-3 border-t border-white/5">
-                    {qrAsesmenAwal && (
-                      <div className="text-center">
-                        <h4 className="text-indigo-300 font-medium mb-2 text-xs">Asesmen Awal</h4>
-                        <div className="bg-white p-2 rounded-lg inline-block">
-                          <img src={qrAsesmenAwal} alt="QR Asesmen Awal" className="w-16 h-16 sm:w-20 sm:h-20 object-cover" />
-                        </div>
-                      </div>
-                    )}
-                    {qrAsesmenSumatif && (
-                      <div className="text-center">
-                        <h4 className="text-rose-300 font-medium mb-2 text-xs">Asesmen Sumatif</h4>
-                        <div className="bg-white p-2 rounded-lg inline-block">
-                          <img src={qrAsesmenSumatif} alt="QR Asesmen Sumatif" className="w-16 h-16 sm:w-20 sm:h-20 object-cover" />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </details>
-          </div>
-        )}
-
-        {/* Bagian Tombol Unduhan */}
+        {/* Bagian Tombol Unduhan & Informasi */}
         <div className="flex flex-col gap-3 mt-auto">
           
+          {/* --- TOMBOL DROPDOWN: INFORMASI PEMBELAJARAN --- */}
+          {hasInfo && (
+            <div className="relative group/info z-30">
+              <div className="w-full flex items-center gap-4 px-4 py-3 rounded-lg bg-indigo-500/10 border border-indigo-500/30 transition-all cursor-default group-hover/info:bg-indigo-500/20 group-hover/info:border-indigo-400/60">
+                <div className="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-5 h-5 text-indigo-300" strokeWidth={2.5} />
+                </div>
+                <div className="flex-1 text-left">
+                  <div className="font-semibold text-sm text-indigo-200">Informasi Pembelajaran</div>
+                  <div className="text-xs text-indigo-400/80 font-medium italic">Pilih info yang ingin dilihat...</div>
+                </div>
+                <ChevronDown className="w-4 h-4 text-indigo-400 group-hover/info:rotate-180 transition-transform duration-300" />
+              </div>
+              
+              {/* Menu Dropdown Info */}
+              <div className="absolute bottom-full left-0 w-full mb-2 opacity-0 invisible group-hover/info:opacity-100 group-hover/info:visible transition-all duration-300 transform translate-y-2 group-hover/info:translate-y-0">
+                <div className="bg-slate-900 border border-indigo-400/50 rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                  {tujuanPembelajaran && (
+                    <button onClick={() => setActiveInfoPopup('tujuan')} className="w-full flex items-center gap-3 px-4 py-4 hover:bg-indigo-500/20 text-slate-200 transition-colors border-b border-white/5 text-left">
+                      <Target className="w-4 h-4 text-emerald-400" />
+                      <span className="text-sm font-bold group-hover/btn:text-emerald-300 transition-colors">Tujuan Pembelajaran</span>
+                    </button>
+                  )}
+                  {pertanyaanPemantik && (
+                    <button onClick={() => setActiveInfoPopup('pemantik')} className="w-full flex items-center gap-3 px-4 py-4 hover:bg-indigo-500/20 text-slate-200 transition-colors border-b border-white/5 text-left">
+                      <Lightbulb className="w-4 h-4 text-amber-400" />
+                      <span className="text-sm font-bold group-hover/btn:text-amber-300 transition-colors">Pertanyaan Pemantik</span>
+                    </button>
+                  )}
+                  {(qrAsesmenAwal || qrAsesmenSumatif) && (
+                    <button onClick={() => setActiveInfoPopup('asesmen')} className="w-full flex items-center gap-3 px-4 py-4 hover:bg-indigo-500/20 text-slate-200 transition-colors text-left">
+                      <ScanLine className="w-4 h-4 text-rose-400" />
+                      <span className="text-sm font-bold group-hover/btn:text-rose-300 transition-colors">Pemindai Asesmen</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Tombol Materi (HTML) */}
           <a 
             href={materiLink} 
@@ -233,7 +221,6 @@ function MaterialCard({
 
           {/* LOGIKA TOMBOL LKPD */}
           {isDropdown ? (
-            // --- JIKA DROPDOWN (Seperti Hikayat) ---
             <div className="relative group/dropdown z-20">
               <div className="w-full flex items-center gap-4 px-4 py-3 rounded-lg bg-white/10 border border-amber-400/40 transition-all cursor-default group-hover/dropdown:bg-white/15">
                 <div className="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center flex-shrink-0">
@@ -259,7 +246,6 @@ function MaterialCard({
               </div>
             </div>
           ) : lkpdPopupMessage ? (
-            // --- JIKA ADA PESAN POP-UP (Seperti Puisi Sub-capaian 2) ---
             <button 
               onClick={() => setShowPopup(true)}
               className="w-full flex items-center gap-4 px-4 py-3 rounded-lg bg-white/10 hover:bg-white/15 transition-all duration-200 border border-white/20 hover:border-amber-400/50 group cursor-pointer"
@@ -273,7 +259,6 @@ function MaterialCard({
               </div>
             </button>
           ) : (
-            // --- JIKA LKPD NORMAL (Hanya Unduh PDF biasa) ---
             <a 
               href={lkpdLink} 
               download 
@@ -288,11 +273,105 @@ function MaterialCard({
               </div>
             </a>
           )}
-
         </div>
       </div>
 
-      {/* --- UI MODAL POP-UP --- */}
+      {/* --- UI MODAL POP-UP INFO PEMBELAJARAN (TERPISAH) --- */}
+      {activeInfoPopup !== null && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="absolute inset-0" onClick={() => setActiveInfoPopup(null)}></div>
+          
+          <div className="relative bg-slate-900 border border-indigo-400/50 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl shadow-indigo-400/20 transform animate-in zoom-in-95 duration-200">
+            <button 
+              onClick={() => setActiveInfoPopup(null)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* KONTEN: TUJUAN PEMBELAJARAN */}
+            {activeInfoPopup === 'tujuan' && tujuanPembelajaran && (
+              <>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-emerald-400/20 flex items-center justify-center text-emerald-400 shrink-0">
+                    <Target className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-emerald-300">Tujuan Pembelajaran</h3>
+                </div>
+                <div className="bg-white/5 p-5 rounded-xl border border-white/10 mb-8">
+                  <p className="text-slate-300 text-sm font-light leading-relaxed">
+                    {tujuanPembelajaran}
+                  </p>
+                </div>
+              </>
+            )}
+
+            {/* KONTEN: PERTANYAAN PEMANTIK */}
+            {activeInfoPopup === 'pemantik' && pertanyaanPemantik && (
+              <>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-amber-400/20 flex items-center justify-center text-amber-400 shrink-0">
+                    <Lightbulb className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-amber-300">Pertanyaan Pemantik</h3>
+                </div>
+                <div className="bg-white/5 p-5 rounded-xl border border-white/10 mb-8">
+                  {Array.isArray(pertanyaanPemantik) ? (
+                    <ol className="list-decimal list-outside pl-4 text-sm text-slate-300 font-light leading-relaxed space-y-4">
+                      {pertanyaanPemantik.map((tanya, idx) => (
+                        <li key={idx} className="pl-1">{tanya}</li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <p className="text-sm text-slate-300 font-light leading-relaxed">{pertanyaanPemantik}</p>
+                  )}
+                </div>
+              </>
+            )}
+
+            {/* KONTEN: ASESMEN */}
+            {activeInfoPopup === 'asesmen' && (qrAsesmenAwal || qrAsesmenSumatif) && (
+              <>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-rose-400/20 flex items-center justify-center text-rose-400 shrink-0">
+                    <ScanLine className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-rose-300">Pemindai Asesmen</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  {qrAsesmenAwal && (
+                    <div className="text-center bg-white/5 p-4 rounded-xl border border-white/10 flex flex-col items-center">
+                      <h4 className="text-indigo-300 font-bold mb-3 text-sm">Asesmen Awal</h4>
+                      <div className="bg-white p-2 rounded-xl inline-block shadow-md">
+                        <img src={qrAsesmenAwal} alt="QR Asesmen Awal" className="w-32 h-32 object-cover" />
+                      </div>
+                    </div>
+                  )}
+                  {qrAsesmenSumatif && (
+                    <div className="text-center bg-white/5 p-4 rounded-xl border border-white/10 flex flex-col items-center">
+                      <h4 className="text-rose-300 font-bold mb-3 text-sm">Asesmen Sumatif</h4>
+                      <div className="bg-white p-2 rounded-xl inline-block shadow-md">
+                        <img src={qrAsesmenSumatif} alt="QR Asesmen Sumatif" className="w-32 h-32 object-cover" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+            
+            <div className="flex justify-end pt-2">
+              <button
+                onClick={() => setActiveInfoPopup(null)}
+                className="px-6 py-2.5 rounded-lg bg-indigo-500/20 border border-indigo-500/50 text-indigo-300 font-bold hover:bg-indigo-500 hover:text-white transition-colors"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- UI MODAL POP-UP LKPD --- */}
       {showPopup && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="absolute inset-0" onClick={() => setShowPopup(false)}></div>
@@ -336,20 +415,20 @@ const materials = [
   {
     title: 'Puisi',
     subtitle: 'Sub-capaian 1: Menganalisis & Membaca',
-    youtubeId: 'GOPUs6KdFfM', 
+    youtubeId: 'L9RDPbAfc_8', 
     btnText: 'Contoh Teks',
     materiLink: '/materi-puisi1.html',
     contohKaryaLink: '/contoh-puisi.html', 
     lkpdLink: '/lkpd-puisi.pdf',
     isDropdown: false,
-    tujuanPembelajaran: 'Peserta didik mampu menganalisis unsur-unsur pembangun puisi dengan tepat dan mengapresiasi maknanya.',
+    tujuanPembelajaran: 'Peserta didik diharapkan dapat memahami, mengidentifikasi, dan menganalisis struktur, makna, ciri kebahasaan dari teks puisi serta mengembangkan kemampuan membaca puisi dengan baik dan benar.',
     pertanyaanPemantik: [
       'Pernahkah kalian membaca atau mendengar sebuah puisi? Di mana kalian menemukannya?',
       'Mengapa sebuah puisi menggunakan kata-kata yang singkat tetapi memiliki makna yang mendalam?',
       'Coba kalian perhatikan salah satu lagu, menurut kalian, apakah lirik lagu memiliki kesamaan dengan puisi? Mengapa?'
     ],
-    qrAsesmenAwal: '/KODE BATANG ASESMEN AWAL PUISI.png',      // <-- Siapkan file gambar qr-awal.png di folder public
-    qrAsesmenSumatif: '/KODE BATANG ASESMEN FORMATIF.png' // <-- Siapkan file gambar qr-sumatif.png di folder public
+    qrAsesmenAwal: '/KODE BATANG ASESMEN AWAL PUISI.png',
+    qrAsesmenSumatif: '/KODE BATANG ASESMEN FORMATIF.png'
   },
   {
     title: 'Puisi',
