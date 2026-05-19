@@ -12,7 +12,8 @@ import {
   BookOpen,
   Target,
   Lightbulb,
-  ScanLine
+  ScanLine,
+  ClipboardList
 } from 'lucide-react';
 
 // --- KOMPONEN HEADER ---
@@ -89,6 +90,7 @@ interface MaterialCardProps {
   pertanyaanPemantik?: string | string[];
   qrAsesmenAwal?: string;
   qrAsesmenSumatif?: string;
+  refleksiPesertaDidik?: string[];
 }
 
 function MaterialCard({ 
@@ -106,15 +108,15 @@ function MaterialCard({
   tujuanPembelajaran,
   pertanyaanPemantik,
   qrAsesmenAwal,
-  qrAsesmenSumatif
+  qrAsesmenSumatif,
+  refleksiPesertaDidik,
 }: MaterialCardProps) {
 
-  // State untuk mengontrol muncul/hilangnya pop-up LKPD
   const [showPopup, setShowPopup] = useState(false);
-  // State untuk mengontrol jenis pop-up Informasi yang sedang terbuka (null = tertutup)
-  const [activeInfoPopup, setActiveInfoPopup] = useState<'tujuan' | 'pemantik' | 'asesmen' | null>(null);
+  // Tambah 'refleksi' sebagai tipe popup yang valid
+  const [activeInfoPopup, setActiveInfoPopup] = useState<'tujuan' | 'pemantik' | 'asesmen' | 'refleksi' | null>(null);
 
-  const hasInfo = tujuanPembelajaran || pertanyaanPemantik || qrAsesmenAwal || qrAsesmenSumatif;
+  const hasInfo = tujuanPembelajaran || pertanyaanPemantik || qrAsesmenAwal || qrAsesmenSumatif || refleksiPesertaDidik;
 
   return (
     <>
@@ -177,9 +179,16 @@ function MaterialCard({
                     </button>
                   )}
                   {(qrAsesmenAwal || qrAsesmenSumatif) && (
-                    <button onClick={() => setActiveInfoPopup('asesmen')} className="w-full flex items-center gap-3 px-4 py-4 hover:bg-indigo-500/20 text-slate-200 transition-colors text-left">
+                    <button onClick={() => setActiveInfoPopup('asesmen')} className={`w-full flex items-center gap-3 px-4 py-4 hover:bg-indigo-500/20 text-slate-200 transition-colors text-left ${refleksiPesertaDidik ? 'border-b border-white/5' : ''}`}>
                       <ScanLine className="w-4 h-4 text-rose-400" />
                       <span className="text-sm font-bold group-hover/btn:text-rose-300 transition-colors">Pemindai Asesmen</span>
+                    </button>
+                  )}
+                  {/* --- TOMBOL BARU: REFLEKSI PESERTA DIDIK --- */}
+                  {refleksiPesertaDidik && (
+                    <button onClick={() => setActiveInfoPopup('refleksi')} className="w-full flex items-center gap-3 px-4 py-4 hover:bg-indigo-500/20 text-slate-200 transition-colors text-left">
+                      <ClipboardList className="w-4 h-4 text-violet-400" />
+                      <span className="text-sm font-bold group-hover/btn:text-violet-300 transition-colors">Refleksi Peserta Didik</span>
                     </button>
                   )}
                 </div>
@@ -358,6 +367,25 @@ function MaterialCard({
                 </div>
               </>
             )}
+
+            {/* --- KONTEN BARU: REFLEKSI PESERTA DIDIK --- */}
+            {activeInfoPopup === 'refleksi' && refleksiPesertaDidik && (
+              <>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-violet-400/20 flex items-center justify-center text-violet-400 shrink-0">
+                    <ClipboardList className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-violet-300">Refleksi Peserta Didik</h3>
+                </div>
+                <div className="bg-white/5 p-5 rounded-xl border border-white/10 mb-8">
+                  <ol className="list-decimal list-outside pl-4 text-sm text-slate-300 font-light leading-relaxed space-y-4">
+                    {refleksiPesertaDidik.map((pertanyaan, idx) => (
+                      <li key={idx} className="pl-1">{pertanyaan}</li>
+                    ))}
+                  </ol>
+                </div>
+              </>
+            )}
             
             <div className="flex justify-end pt-2">
               <button
@@ -428,7 +456,15 @@ const materials = [
       'Coba kalian perhatikan salah satu lagu, menurut kalian, apakah lirik lagu memiliki kesamaan dengan puisi? Mengapa?'
     ],
     qrAsesmenAwal: '/KODE BATANG ASESMEN AWAL PUISI.png',
-    qrAsesmenSumatif: '/KODE BATANG ASESMEN FORMATIF.png'
+    qrAsesmenSumatif: '/KODE BATANG ASESMEN FORMATIF.png',
+    // --- DATA BARU: REFLEKSI PESERTA DIDIK ---
+    refleksiPesertaDidik: [
+      'Bagaimana perasaan kalian setelah pembelajaran hari ini?',
+      'Apakah ibu menjelaskan materinya terlalu cepat atau terlalu lambat atau cukup?',
+      'Apakah kalian memahami seluruh materi pada pertemuan hari ini?',
+      'Apa hal yang ingin kalian pelajari lebih lanjut?',
+      'Apakah pembelajaran dengan ibu menyenangkan?',
+    ],
   },
   {
     title: 'Puisi',
